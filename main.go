@@ -155,7 +155,7 @@ func main() {
 	domainPtr := flag.String("domain", "test.example.com", "the domain to set/unset")
 	typePtr := flag.String("type", "A", "the type of record to set")
 	valuePtr := flag.String("value", "10.0.0.1", "the value to set for the record")
-	tokenPtr := flag.String("token", "1234", "token for the dns api")
+	tokenPtr := flag.String("token", "", "token for the dns api")
 
 	flag.Parse()
 
