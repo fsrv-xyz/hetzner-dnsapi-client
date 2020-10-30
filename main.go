@@ -159,11 +159,12 @@ func main() {
 
 	flag.Parse()
 
-	if len(*tokenPtr) > 4 {
+	if len(*tokenPtr) < 1 {
 		TOKEN = os.Getenv("DNS_API_TOKEN")
 	} else {
 		TOKEN = *tokenPtr
 	}
+
 	if len(TOKEN) < 5 {
 		log.Fatalln("token seems invalid")
 		os.Exit(1)
