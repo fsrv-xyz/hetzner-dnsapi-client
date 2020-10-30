@@ -16,7 +16,7 @@ stages:
   image: archlinux
   artifacts:
     paths:
-      - goproxy-${GOOS}-${GOARCH}
+      - hetzner-dnsapi-client_${GOOS}-${GOARCH}
 
 amd64:openbsd:
   <<: *BUILD
