@@ -150,16 +150,31 @@ func (r Record) checkExisting() (bool, string) {
 	return false, ""
 }
 
+func fileExists(filename string) bool {
+	info, err := os.Stat(filename)
+	if os.IsNotExist(err) {
+		return false
+	}
+	return !info.IsDir()
+}
+
 func main() {
 	actionPtr := flag.Bool("delete", false, "delete the record")
 	domainPtr := flag.String("domain", "test.example.com", "the domain to set/unset")
 	typePtr := flag.String("type", "A", "the type of record to set")
 	valuePtr := flag.String("value", "10.0.0.1", "the value to set for the record")
 	tokenPtr := flag.String("token", "", "token for the dns api")
+	tokenFile := flag.String("tokenFile", "/tmp/dnstoken.txt", "the text file including the token")
 
 	flag.Parse()
 
-	if len(*tokenPtr) < 1 {
+	if fileExists(*tokenFile) {
+		content, err := ioutil.ReadFile(*tokenFile)
+		if err != nil {
+			log.Fatal(err)
+		}
+		TOEKN := string(content)
+	} else if len(*tokenPtr) < 1 {
 		TOKEN = os.Getenv("DNS_API_TOKEN")
 	} else {
 		TOKEN = *tokenPtr
