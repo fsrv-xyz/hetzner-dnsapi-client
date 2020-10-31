@@ -12,7 +12,7 @@ stages:
     - pacman -Syy
     - echo 'Server = https://mirror.fsrv.services/pub/archlinux/$repo/os/$arch' > /etc/pacman.d/mirrorlist
     - pacman -Syy --noconfirm go
-    - go build -o hetzner-dnsapi-client_${GOOS}-${GOARCH} main.go
+    - go build -o hetzner-dnsapi-client_${GOOS}-${GOARCH} cmd/hetzner-dnsapi-client/main.go
   image: archlinux
   artifacts:
     paths:
