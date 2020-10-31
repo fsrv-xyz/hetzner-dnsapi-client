@@ -173,7 +173,7 @@ func main() {
 		if err != nil {
 			log.Fatal(err)
 		}
-		TOEKN := string(content)
+		TOKEN = string(content)
 	} else if len(*tokenPtr) < 1 {
 		TOKEN = os.Getenv("DNS_API_TOKEN")
 	} else {
